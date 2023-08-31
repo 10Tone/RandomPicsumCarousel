@@ -9,15 +9,19 @@ const menuContainer = document.querySelector(".menu-container");
 let fadeTime = 10000;
 let carouselHasStarted = false;
 
+function timeOut(time) {
+    return new Promise(resolve => {
+        setTimeout(resolve, time);
+    });
+}
 function loadImage(element) {
     element.style.backgroundImage = "url(https://picsum.photos/1920/1080/?random&cb=" + (+new Date()) + ")";
 }
-async function setStartImages () {
+
+function setStartImages () {
     loadImage(imageOne);
-    await new Promise((resolve)=> {
-        setTimeout(()=> {
-            loadImage(imageTwo);
-        }, 10);
+    timeOut(10).then(()=> {
+        loadImage(imageTwo);
     });
 }
 
@@ -26,10 +30,10 @@ function fadeInAnime(_targets, _duration) {
         targets: _targets,
         opacity: [0,1],
         duration: _duration,
-        easing: 'easeInOutSine',
+        delay: 1000,
+        easing: 'linear',
         begin: ()=> {
             loadImage(_targets);
-            console.log("animation complete");
         }
     });
     animation.play();
@@ -41,10 +45,10 @@ function fadeOutAnime(_targets, _duration) {
         targets: _targets,
         opacity: [1,0],
         duration: _duration,
-        easing: 'easeInOutSine',
+        delay: 1000,
+        easing: 'linear',
         complete: ()=> {
             loadImage(_targets);
-            console.log("animation complete");
         }
     });
     animation.play();
@@ -58,83 +62,49 @@ function crossFadeSequence() {
     fadeInAnime(imageOne, fadeTime).finished.then(()=> {
         fadeOutAnime(imageOne, fadeTime).finished.then(crossFadeSequence);
     });
-
 }
 
-setStartImages();
-crossFadeSequence();
+let menuSlideAnimeTl = anime.timeline({
+    autoplay: false,
+    easing: 'linear'
+});
 
+menuSlideAnimeTl
+    .add({
+        targets: [startBtn, 'h1'],
+        opacity: [1, 0],
+        duration: 500
+    })
+    .add({
+        targets: menuContainer,
+        height: ['100%', '5%'],
+        opacity: ['80%', '40%'],
+        duration: 1500,
+        easing: 'easeOutQuad',
+    })
+    .add({
+        targets: [startBtn, 'h1'],
+        opacity: [0, 1],
+        duration: 500
+    })
+    .add({
+        targets: menuContainer,
+        opacity: 0,
+        duration: 500,
+        delay:2000
+    })
 
+menuSlideAnimeTl.finished.then(()=> {
+    startBtn.setAttribute('disabled', 'disabled');
+    crossFadeSequence();
+})
+startBtn.addEventListener("click", ()=> {
+    if(!carouselHasStarted) {
+        carouselHasStarted = true;
+        menuSlideAnimeTl.play();
+    }
+});
 
-// animeOne();
-// animeTwo();
-
-// anime({
-//     targets: 'h1',
-//     translateX: 250,
-// });
-//
-// function cssAnimate(element, animationName) {
-//     element.classList.remove(animationName);
-//     return new Promise((resolve, reject) => {
-//         function handleAnimationEnd() {
-//             resolve(element);
-//             console.log(`${animationName} ended`);
-//         }
-//         element.addEventListener("animationend", handleAnimationEnd, {once: true});
-//         element.classList.add(animationName);
-//     });
-//
-// }
-//
-// function timeOut(time) {
-//     return new Promise(resolve => {
-//         setTimeout(resolve, time);
-//     })
-//
-// }
-//
-// async function menuSlideAnimationChain() {
-//     await cssAnimate(menuContainer, "slide-up-anim");
-//     await timeOut(2000);
-//     await cssAnimate(menuContainer, "fade-out-anim");
-// }
-//
-//
-//
-//
-//
-//
-//
-//
-// function animatePromise(element, startOpacity, endOpacity) {
-//     return element.animate([{opacity: startOpacity}, {opacity: endOpacity}], {duration: fadeTime}).finished;
-// }
-//
-//
-// async function fadeAnimationSequence() {
-//
-//     imageTwo.animate([{opacity: 0}, {opacity: 1}]);
-//     await animatePromise(imageOne,1,0);
-//     loadImage(imageOne);
-//     imageOne.animate([{opacity: 0}, {opacity: 1}]);
-//     await animatePromise(imageTwo, 1,0);
-//     loadImage(imageTwo);
-//
-//     Promise.resolve().then(fadeAnimationSequence);
-// }
-//
-//
-//
-// startBtn.addEventListener("click", ()=> {
-//     if(!carouselHasStarted) {
-//         carouselHasStarted = true;
-//         // startBtn.classList.add("hide-anim");
-//         menuSlideAnimationChain();
-//         fadeAnimationSequence();
-//     }
-// });
-//
 // body.addEventListener("mousemove", (event)=> {
 //     if(menuContainer.classList.contains("fade-out-anim") && event.clientY <= 20) {
 //         console.log("show");
@@ -143,4 +113,5 @@ crossFadeSequence();
 // })
 
 
+setStartImages();
 

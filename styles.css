@@ -1,6 +1,5 @@
 :root {
     font-family: 'Work Sans', sans-serif;
-    --menu-start-opacity: 90%;
 }
 
 html {
@@ -56,12 +55,13 @@ body {
      /*margin: auto;*/
 
      background-color: white;
-     opacity: var(--menu-start-opacity);
+     opacity: 1;
  }
 
  h1 {
      font-size: 3rem;
      font-weight: bold;
+     opacity: 1;
  }
 
 #start-btn {
@@ -82,56 +82,4 @@ body {
 
 }
 
-/*.slide-up {*/
-/*    transition:2s;*/
-/*    height: 10%;*/
-/*    opacity: 50;*/
-/*}*/
-/*.hide-anim {*/
-/*    animation: hide 1s forwards;*/
-/*}*/
 
-/*.slide-up-anim {*/
-/*    animation: slide-up 3s forwards ease-in;*/
-/*}*/
-
-/*.fade-out-anim {*/
-/*    animation: fade-out 2s forwards ease-out;*/
-/*}*/
-
-/*.fade-in-anim {*/
-/*    animation: fade-in 1s forwards ease-in;*/
-/*}*/
-
-/*@keyframes hide {*/
-/*    to {*/
-/*        opacity: 0;*/
-/*        visibility: hidden;*/
-/*        content: "Stop";*/
-/*    }*/
-/*}*/
-
-/*@keyframes slide-up {*/
-/*    to {*/
-/*        height: 10%;*/
-/*        opacity: 50%;*/
-/*    }*/
-/*}*/
-
-/*@keyframes fade-in {*/
-/*    to {*/
-/*        height: 10%;*/
-/*        opacity: 50%;*/
-/*    }*/
-/*}*/
-
-/*@keyframes fade-out {*/
-/*    from {*/
-/*        height: 10%;*/
-/*        opacity: 50%;*/
-/*    }*/
-/*    to {*/
-/*        height: 0;*/
-/*        opacity: 0;*/
-/*    }*/
-/*}*/
