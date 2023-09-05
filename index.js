@@ -5,9 +5,12 @@ const imageOne = document.querySelector(".image1");
 const imageTwo = document.querySelector(".image2");
 const startBtn = document.querySelector("#start-btn");
 const menuContainer = document.querySelector(".menu-container");
+const settingsMenuSelector = document.querySelector(".settings-menu-selector");
+const circles = document.querySelectorAll(".circle");
 
 let fadeTime = 10000;
 let carouselHasStarted = false;
+let mouseOverMenu = false;
 
 function timeOut(time) {
     return new Promise(resolve => {
@@ -24,6 +27,7 @@ function setStartImages () {
         loadImage(imageTwo);
     });
 }
+
 
 function fadeInAnime(_targets, _duration) {
     let animation = anime({
@@ -64,35 +68,42 @@ function crossFadeSequence() {
     });
 }
 
+
 let menuSlideAnimeTl = anime.timeline({
     autoplay: false,
-    easing: 'linear'
+    easing: 'easeOutQuad'
 });
 
 menuSlideAnimeTl
     .add({
         targets: [startBtn, 'h1'],
         opacity: [1, 0],
-        duration: 500
+        duration: 2000
     })
     .add({
         targets: menuContainer,
-        height: ['100%', '5%'],
-        opacity: ['80%', '40%'],
-        duration: 1500,
-        easing: 'easeOutQuad',
+        height: ['100%', '0%'],
+        opacity: ['95%', '50%'],
+        // boxShadow: ['0px 0px 0px 0px rgba(92,92,92,0)','0px 20px 51px 22px rgba(79,79,79,1)'],
+        duration: 2000,
     })
     .add({
-        targets: [startBtn, 'h1'],
-        opacity: [0, 1],
-        duration: 500
+        targets:settingsMenuSelector,
+        opacity:[0,1],
+        duration: 1
     })
     .add({
-        targets: menuContainer,
-        opacity: 0,
-        duration: 500,
-        delay:2000
+        targets: circles,
+        translateX: [window.innerWidth, 0],
+        delay: anime.stagger(750),
+        easing: 'easeOutQuint'
     })
+    // .add({
+    //     targets: settingsMenuSelector,
+    //     opacity: [1, 0],
+    //     duration: 4000,
+    //     delay: 1000
+    // })
 
 menuSlideAnimeTl.finished.then(()=> {
     startBtn.setAttribute('disabled', 'disabled');
@@ -105,13 +116,24 @@ startBtn.addEventListener("click", ()=> {
     }
 });
 
-// body.addEventListener("mousemove", (event)=> {
-//     if(menuContainer.classList.contains("fade-out-anim") && event.clientY <= 20) {
-//         console.log("show");
-//         menuContainer.classList.replace("fade-out-anim", "fade-in-anim");
-//     }
-// })
+settingsMenuSelector.addEventListener('mouseover', ()=> {
+    if(!carouselHasStarted) return;
+    anime({
+        targets: settingsMenuSelector,
+        opacity: [0, 1],
+        duration: 2000,
+    });
+});
 
+settingsMenuSelector.addEventListener('mouseout', ()=> {
+    if(!carouselHasStarted) return;
+    anime({
+        targets: settingsMenuSelector,
+        opacity: [1,0],
+        duration: 2000,
+        delay: 1000
+    });
+});
 
 setStartImages();
 

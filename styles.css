@@ -33,28 +33,45 @@ body {
     height: 100%;
 }
 
-/*.image1 {*/
-/*    opacity: 0;*/
-/*}*/
+.circle {
+    /*margin-top: 30px;*/
+    height: 15px;
+    width: 15px;
+    background-color: #171717;
+    border-radius: 50%;
 
-/*.image2 {*/
-/*    opacity: 1;*/
-/*}*/
+}
+
+.settings-menu-selector {
+    grid-column: 1;
+    grid-row: 1;
+    height: 5%;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-start;
+    gap: 6px;
+    margin: 30px;
+    opacity: 0;
+}
+
+.settings-menu-selector:hover {
+    cursor: pointer;
+}
+
+
 
  .menu-container {
      grid-column: 1;
      grid-row: 1;
      height: 100%;
-     z-index: 1;
+     z-index: 2;
      display: flex;
      flex-direction: column;
      flex-wrap: wrap;
      align-items: center;
      text-align: center;
      justify-content: center;
-     /*margin: auto;*/
-
-     background-color: white;
+     background-color: lightgray;
      opacity: 1;
  }
 
@@ -62,6 +79,7 @@ body {
      font-size: 3rem;
      font-weight: bold;
      opacity: 1;
+     color: #171717;
  }
 
 #start-btn {
@@ -71,8 +89,8 @@ body {
     font-size: 1.5rem;
     font-weight: bold;
     cursor: pointer;
-    background-color: black;
-    color: white;
+    background-color: #171717;
+    color: lightgray;
     opacity: 1;
 }
 
