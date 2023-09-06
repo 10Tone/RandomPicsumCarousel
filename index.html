@@ -13,14 +13,46 @@
     <div class="carousel-container">
         <div class="image1"></div>
         <div class="image2"></div>
-        <div class="menu-container">
+        <div class="start-container">
             <h1>Random Picsum Carousel</h1>
             <button id="start-btn">Start</button>
         </div>
-        <div class="settings-menu-selector">
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
+        <div class="settings-menu">
+            <p id="settings-title">Settings</p>
+            <div class="settings-object">
+                <label for="show-info-checkbox">Show Picsum Info</label>
+                <input type="checkbox" id="show-info-checkbox" name="show-info-checkbox">
+            </div>
+            <div class="settings-object">
+                <label for="fade-time">Fade Time</label>
+                <input type="range" id="fade-time" name="fade-time" min="1" max="30" value="10" step="1">
+            </div>
+            <div class="settings-object">
+                <p>Color/B&W</p>
+                <div>
+                    <input type="radio" id="color" name="color-bw" checked>
+                    <label for="color">Color</label>
+                </div>
+                <div>
+                    <input type="radio" id="bw" name="color-bw">
+                    <label for="bw">Black & White</label>
+                </div>
+
+<!--                <fieldset>-->
+<!--                    <legend>Color/B&W</legend>-->
+<!--                    <div>-->
+<!--                        <input type="radio" id="color" name="color-bw" checked>-->
+<!--                        <label for="color">Color</label>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <input type="radio" id="bw" name="color-bw">-->
+<!--                        <label for="bw">Black & White</label>-->
+<!--                    </div>-->
+
+<!--                </fieldset>-->
+
+
+            </div>
         </div>
     </div>
 

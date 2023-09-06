@@ -4,9 +4,10 @@ const body = document.querySelector("body");
 const imageOne = document.querySelector(".image1");
 const imageTwo = document.querySelector(".image2");
 const startBtn = document.querySelector("#start-btn");
-const menuContainer = document.querySelector(".menu-container");
-const settingsMenuSelector = document.querySelector(".settings-menu-selector");
+const startContainer = document.querySelector(".start-container");
+const settingsMenu = document.querySelector(".settings-menu");
 const circles = document.querySelectorAll(".circle");
+const showInfoCheckbox = document.querySelector("#show-info-checkbox");
 
 let fadeTime = 10000;
 let carouselHasStarted = false;
@@ -19,7 +20,18 @@ function timeOut(time) {
 }
 function loadImage(element) {
     element.style.backgroundImage = "url(https://picsum.photos/1920/1080/?random&cb=" + (+new Date()) + ")";
+    // console.log();
+    // loadImageInfo();
 }
+
+async function loadImageInfo(url) {
+    const response = await fetch(url);
+    const info = await response.json();
+
+    console.log(info);
+}
+
+
 
 function setStartImages () {
     loadImage(imageOne);
@@ -69,70 +81,46 @@ function crossFadeSequence() {
 }
 
 
-let menuSlideAnimeTl = anime.timeline({
+let startScreenSlideAnimeTl = anime.timeline({
     autoplay: false,
     easing: 'easeOutQuad'
 });
 
-menuSlideAnimeTl
+startScreenSlideAnimeTl
     .add({
         targets: [startBtn, 'h1'],
         opacity: [1, 0],
         duration: 2000
     })
     .add({
-        targets: menuContainer,
+        targets: startContainer,
         height: ['100%', '0%'],
         opacity: ['95%', '50%'],
         // boxShadow: ['0px 0px 0px 0px rgba(92,92,92,0)','0px 20px 51px 22px rgba(79,79,79,1)'],
         duration: 2000,
     })
-    .add({
-        targets:settingsMenuSelector,
-        opacity:[0,1],
-        duration: 1
-    })
-    .add({
-        targets: circles,
-        translateX: [window.innerWidth, 0],
-        delay: anime.stagger(750),
-        easing: 'easeOutQuint'
-    })
-    // .add({
-    //     targets: settingsMenuSelector,
-    //     opacity: [1, 0],
-    //     duration: 4000,
-    //     delay: 1000
-    // })
 
-menuSlideAnimeTl.finished.then(()=> {
+startScreenSlideAnimeTl.finished.then(()=> {
     startBtn.setAttribute('disabled', 'disabled');
     crossFadeSequence();
 })
 startBtn.addEventListener("click", ()=> {
     if(!carouselHasStarted) {
         carouselHasStarted = true;
-        menuSlideAnimeTl.play();
+        startScreenSlideAnimeTl.play();
     }
 });
 
-settingsMenuSelector.addEventListener('mouseover', ()=> {
-    if(!carouselHasStarted) return;
-    anime({
-        targets: settingsMenuSelector,
-        opacity: [0, 1],
-        duration: 2000,
-    });
+settingsMenu.addEventListener('mouseover', ()=> {
+
 });
 
-settingsMenuSelector.addEventListener('mouseout', ()=> {
-    if(!carouselHasStarted) return;
-    anime({
-        targets: settingsMenuSelector,
-        opacity: [1,0],
-        duration: 2000,
-        delay: 1000
-    });
+settingsMenu.addEventListener('mouseout', ()=> {
+
+});
+
+showInfoCheckbox.addEventListener('change', ()=> {
+    console.log(showInfoCheckbox.checked);
 });
 
 setStartImages();
