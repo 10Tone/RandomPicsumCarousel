@@ -9,6 +9,8 @@ const settingsMenu = document.querySelector(".settings-menu");
 const circles = document.querySelectorAll(".circle");
 const showInfoCheckbox = document.querySelector("#show-info-checkbox");
 
+let imageOneData;
+
 let fadeTime = 10000;
 let carouselHasStarted = false;
 let mouseOverMenu = false;
@@ -19,24 +21,67 @@ function timeOut(time) {
     });
 }
 function loadImage(element) {
+    // loadImageInfo()
     element.style.backgroundImage = "url(https://picsum.photos/1920/1080/?random&cb=" + (+new Date()) + ")";
     // console.log();
     // loadImageInfo();
 }
 
-async function loadImageInfo(url) {
-    const response = await fetch(url);
-    const info = await response.json();
+// async function loadImageInfo() {
+//     let listResponse = await fetch('https://picsum.photos/v2/list?limit=100');
+//     let listData = await listResponse.json();
+//     console.log(listData);
+//
+//     let imageID = Math.floor(Math.random()*listData.length);
+//     console.log(imageID);
+//     let url = `https://picsum.photos/id/${imageID}/info`;
+//     try {
+//         let response = await fetch(url);
+//         let info = await response.json();
+//         console.log(info);
+//     } catch(err) {
+//
+//     }
+// }
 
-    console.log(info);
+function loadImageAndInfo(element) {
+    fetch(`https://picsum.photos/1920/1080`)
+        .then((resp) => {
+            if (!resp.ok) throw resp.statusText;
+            let imageID = resp.headers.get('picsum-id');
+            let infoURL = `https://picsum.photos/id/${imageID}/info`;
+            console.log(infoURL);
+
+            fetch(infoURL)
+                .then(async (resp) => {
+                    if (!resp.ok) throw resp.statusText;
+                    return await resp.json();
+                })
+                .then((info)=> {
+                    imageOneData = info;
+                    console.log(imageOneData);
+                    element.style.backgroundImage = `url(${info['download_url']})`;
+                })
+                .catch((err)=> {
+                    console.warn(err.message);
+                });
+        })
+        .catch((err)=> {
+            console.warn(err.message);
+        });
 }
 
+/*
+- fetch random image
+- read header id
+- fetch image info
+*/
 
 
 function setStartImages () {
-    loadImage(imageOne);
+    loadImageAndInfo(imageTwo);
     timeOut(10).then(()=> {
-        loadImage(imageTwo);
+        loadImageAndInfo(imageOne);
     });
 }
 
@@ -49,7 +94,7 @@ function fadeInAnime(_targets, _duration) {
         delay: 1000,
         easing: 'linear',
         begin: ()=> {
-            loadImage(_targets);
+            loadImageAndInfo(_targets);
         }
     });
     animation.play();
@@ -64,7 +109,7 @@ function fadeOutAnime(_targets, _duration) {
         delay: 1000,
         easing: 'linear',
         complete: ()=> {
-            loadImage(_targets);
+            loadImageAndInfo(_targets);
         }
     });
     animation.play();
@@ -95,7 +140,7 @@ startScreenSlideAnimeTl
     .add({
         targets: startContainer,
         height: ['100%', '0%'],
-        opacity: ['95%', '50%'],
+        opacity: ['60%', '50%'],
         // boxShadow: ['0px 0px 0px 0px rgba(92,92,92,0)','0px 20px 51px 22px rgba(79,79,79,1)'],
         duration: 2000,
     })
