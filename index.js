@@ -58,13 +58,8 @@ function loadImageAndInfo(element) {
                     return await resp.json();
                 })
                 .then((info)=> {
-                    imageOneData = info;
-                    console.log(imageOneData);
                     element.style.backgroundImage = `url(${info['download_url']})`;
-                    imageInfo.forEach((item)=> {
-                        item.textContent = info['author'];
-                    });
-                    // MOVE imageinfo
+                    element.querySelector('.image-info').textContent = `image by: ${info['author']}`;
                 })
                 .catch((err)=> {
                     console.warn(err.message);
@@ -74,6 +69,10 @@ function loadImageAndInfo(element) {
             console.warn(err.message);
         });
 }
+
+// function updateImageInfo(element) {
+//     element.textContent =
+// }
 
 /*
 - fetch random image
@@ -144,8 +143,7 @@ startScreenSlideAnimeTl
     .add({
         targets: startContainer,
         height: ['100%', '0%'],
-        opacity: ['60%', '50%'],
-        // boxShadow: ['0px 0px 0px 0px rgba(92,92,92,0)','0px 20px 51px 22px rgba(79,79,79,1)'],
+        opacity: ['90%', '50%'],
         duration: 2000,
     })
 

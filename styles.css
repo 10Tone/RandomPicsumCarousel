@@ -36,7 +36,7 @@ body {
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: end;
 }
 
 .image-info {
@@ -44,6 +44,7 @@ body {
     color: var(--font-color-light);
     font-size: 2rem;
     padding: 6px;
+    visibility: hidden;
 }
 
  .start-container {
