@@ -6,8 +6,8 @@ const imageTwo = document.querySelector(".image2");
 const startBtn = document.querySelector("#start-btn");
 const startContainer = document.querySelector(".start-container");
 const settingsMenu = document.querySelector(".settings-menu");
-const circles = document.querySelectorAll(".circle");
 const showInfoCheckbox = document.querySelector("#show-info-checkbox");
+const imageInfo = document.querySelectorAll('.image-info');
 
 let imageOneData;
 
@@ -61,6 +61,10 @@ function loadImageAndInfo(element) {
                     imageOneData = info;
                     console.log(imageOneData);
                     element.style.backgroundImage = `url(${info['download_url']})`;
+                    imageInfo.forEach((item)=> {
+                        item.textContent = info['author'];
+                    });
+                    // MOVE imageinfo
                 })
                 .catch((err)=> {
                     console.warn(err.message);
@@ -165,7 +169,15 @@ settingsMenu.addEventListener('mouseout', ()=> {
 });
 
 showInfoCheckbox.addEventListener('change', ()=> {
-    console.log(showInfoCheckbox.checked);
+    if(showInfoCheckbox.checked) {
+        imageInfo.forEach((item)=> {
+            item.style.visibility = 'visible';
+        });
+    } else {
+        imageInfo.forEach((item)=> {
+            item.style.visibility = 'hidden';
+        });
+            }
 });
 
 setStartImages();

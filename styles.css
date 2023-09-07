@@ -1,5 +1,7 @@
 :root {
     font-family: 'Work Sans', sans-serif;
+    --bg-color-dark: #171717;
+    --font-color-light: lightgray;
 }
 
 html {
@@ -30,7 +32,18 @@ body {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    text-align: center;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-info {
+    background-color: var(--bg-color-dark);
+    color: var(--font-color-light);
+    font-size: 2rem;
+    padding: 6px;
 }
 
  .start-container {
@@ -44,7 +57,7 @@ body {
      align-items: center;
      text-align: center;
      justify-content: center;
-     background-color: lightgray;
+     background-color: var(--font-color-light);
      opacity: 1;
  }
 
@@ -54,16 +67,16 @@ body {
      height: 30%;
      width: 80%;
      z-index: 2;
-     background-color: #171717;
+     background-color: var(--bg-color-dark);
      opacity: 90%;
-     color: lightgray;
+     color: var(--font-color-light);
  }
 
  h1 {
      font-size: 3rem;
      font-weight: bold;
      opacity: 1;
-     color: #171717;
+     color: var(--bg-color-dark);;
  }
 
 #start-btn {
@@ -73,8 +86,8 @@ body {
     font-size: 1.5rem;
     font-weight: bold;
     cursor: pointer;
-    background-color: #171717;
-    color: lightgray;
+    background-color: var(--bg-color-dark);
+    color: var(--font-color-light);
     opacity: 1;
 }
 
