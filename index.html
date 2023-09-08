@@ -13,9 +13,11 @@
     <div class="carousel-container">
         <div class="image1">
             <p class="image-info">Image 1 info</p>
+<!--            <a class="image-link" href="https://www.w3schools.com">Visit W3Schools.com!</a>-->
         </div>
         <div class="image2">
             <p class="image-info">Image 2 info</p>
+<!--            <a class="image-link" href="https://www.w3schools.com">Visit W3Schools.com!</a>-->
         </div>
         <div class="start-container">
             <h1>Random Picsum Carousel</h1>
@@ -24,23 +26,29 @@
         <div class="settings-menu">
             <p id="settings-title">Settings</p>
             <div class="settings-object">
-                <label for="show-info-checkbox">Show Picsum Info</label>
+                <label for="show-info-checkbox">Show Photographer</label>
                 <input type="checkbox" id="show-info-checkbox" name="show-info-checkbox">
             </div>
+            <br>
+<!--            <div class="settings-object">-->
+<!--                <label for="show-link-checkbox">Show Link to Image</label>-->
+<!--                <input type="checkbox" id="show-link-checkbox" name="show-link-checkbox">-->
+<!--            </div>-->
             <div class="settings-object">
-                <label for="fade-time">Fade Time</label>
-                <input type="range" id="fade-time" name="fade-time" min="1" max="30" value="10" step="1">
+                <label for="fade-time-slider">Fade Time</label>
+                <input type="range" id="fade-time-slider" name="fade-time-slider" min="2" max="60" value="10" step="1">
+                <output id="range-value">1</output>
             </div>
-            <div class="settings-object">
-                <p>Color/B&W</p>
-                <div>
-                    <input type="radio" id="color" name="color-bw" checked>
-                    <label for="color">Color</label>
-                </div>
-                <div>
-                    <input type="radio" id="bw" name="color-bw">
-                    <label for="bw">Black & White</label>
-                </div>
+<!--            <div class="settings-object">-->
+<!--                <p>Color/B&W</p>-->
+<!--                <div>-->
+<!--                    <input type="radio" id="color" name="color-bw" checked>-->
+<!--                    <label for="color">Color</label>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <input type="radio" id="bw" name="color-bw">-->
+<!--                    <label for="bw">Black & White</label>-->
+<!--                </div>-->
 
 <!--                <fieldset>-->
 <!--                    <legend>Color/B&W</legend>-->

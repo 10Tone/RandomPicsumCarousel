@@ -1,12 +1,13 @@
 import anime from "./node_modules/animejs/lib/anime.es.js";
 
-const body = document.querySelector("body");
+// const body = document.querySelector("body");
 const imageOne = document.querySelector(".image1");
 const imageTwo = document.querySelector(".image2");
 const startBtn = document.querySelector("#start-btn");
 const startContainer = document.querySelector(".start-container");
 const settingsMenu = document.querySelector(".settings-menu");
 const showInfoCheckbox = document.querySelector("#show-info-checkbox");
+const fadeTimeSlider = document.querySelector('#fade-time-slider');
 const imageInfo = document.querySelectorAll('.image-info');
 
 let imageOneData;
@@ -69,16 +70,6 @@ function loadImageAndInfo(element) {
             console.warn(err.message);
         });
 }
-
-// function updateImageInfo(element) {
-//     element.textContent =
-// }
-
-/*
-- fetch random image
-- read header id
-- fetch image info
-*/
 
 
 function setStartImages () {
@@ -158,15 +149,16 @@ startBtn.addEventListener("click", ()=> {
     }
 });
 
-settingsMenu.addEventListener('mouseover', ()=> {
 
-});
+settingsMenu.onmouseenter = ()=> {
+    settingsMenu.style.opacity = 1;
+}
 
-settingsMenu.addEventListener('mouseout', ()=> {
+settingsMenu.onmouseleave = ()=> {
+    settingsMenu.style.opacity = 0;
+}
 
-});
-
-showInfoCheckbox.addEventListener('change', ()=> {
+showInfoCheckbox.onchange = ()=> {
     if(showInfoCheckbox.checked) {
         imageInfo.forEach((item)=> {
             item.style.visibility = 'visible';
@@ -176,7 +168,16 @@ showInfoCheckbox.addEventListener('change', ()=> {
             item.style.visibility = 'hidden';
         });
             }
-});
+};
+
+fadeTimeSlider.oninput = ()=> {
+    updateFadeTime(fadeTimeSlider.value);
+    document.getElementById("range-value").innerHTML = fadeTimeSlider.value;
+}
+
+function updateFadeTime(value) {
+    fadeTime = value * 1000;
+}
 
 setStartImages();
-
+document.getElementById("range-value").innerHTML = fadeTimeSlider.value;

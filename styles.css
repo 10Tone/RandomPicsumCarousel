@@ -12,6 +12,7 @@ body {
     padding: 0;
     margin: 0;
     height: 100vh;
+
     /*background-size: cover;*/
     /*background-repeat: no-repeat;*/
 }
@@ -65,13 +66,44 @@ body {
  .settings-menu {
      grid-column: 1;
      grid-row: 1;
-     height: 30%;
-     width: 80%;
+     height: 15%;
+     width: 20%;
      z-index: 2;
      background-color: var(--bg-color-dark);
-     opacity: 90%;
+     opacity: 0;
      color: var(--font-color-light);
+     padding-left: 30px;
  }
+
+ #fade-time-slider {
+     -webkit-appearance: none;
+     appearance: none;
+     outline: none;
+
+ }
+
+ #fade-time-slider::-webkit-slider-thumb {
+     -webkit-appearance: none;
+     appearance: none;
+     border-radius: 0;
+     width: 20px;
+     height: 20px;
+     background: var(--font-color-light);
+     cursor: pointer;
+ }
+
+#fade-time-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 0;
+    background: var(--font-color-light);
+    cursor: pointer;
+}
+
+#settings-title {
+    font-size: 2rem;
+    font-weight: bold;
+}
 
  h1 {
      font-size: 3rem;
