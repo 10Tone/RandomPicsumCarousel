@@ -1,7 +1,7 @@
 :root {
     font-family: 'Work Sans', sans-serif;
-    --bg-color-dark: #171717;
-    --font-color-light: lightgray;
+    --color-dark: #171717;
+    --color-light: lightgray;
 }
 
 html {
@@ -41,8 +41,8 @@ body {
 }
 
 .image-info {
-    background-color: var(--bg-color-dark);
-    color: var(--font-color-light);
+    background-color: var(--color-dark);
+    color: var(--color-light);
     font-size: 2rem;
     padding: 6px;
     visibility: hidden;
@@ -59,57 +59,85 @@ body {
      align-items: center;
      text-align: center;
      justify-content: center;
-     background-color: var(--font-color-light);
+     background-color: var(--color-light);
      opacity: 1;
  }
 
  .settings-menu {
      grid-column: 1;
      grid-row: 1;
-     height: 15%;
-     width: 20%;
+     height: 40%;
+     width: max-content;
      z-index: 2;
-     background-color: var(--bg-color-dark);
+     background-color: transparent;
      opacity: 0;
-     color: var(--font-color-light);
+     color: var(--color-light);
      padding-left: 30px;
+ }
+
+ #show-info-checkbox {
+     margin: 0;
+     padding: 0;
  }
 
  #fade-time-slider {
      -webkit-appearance: none;
      appearance: none;
      outline: none;
-
+     background-color: var(--color-light);
+     margin: 0;
+     padding: 0;
+     height: 15px;
  }
 
  #fade-time-slider::-webkit-slider-thumb {
      -webkit-appearance: none;
      appearance: none;
      border-radius: 0;
-     width: 20px;
-     height: 20px;
-     background: var(--font-color-light);
+     width: 15px;
+     height: 15px;
+     background: var(--color-dark);
      cursor: pointer;
+
  }
 
 #fade-time-slider::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     border-radius: 0;
-    background: var(--font-color-light);
+    background: var(--color-dark);
     cursor: pointer;
+
 }
 
 #settings-title {
-    font-size: 2rem;
-    font-weight: bold;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: var(--color-dark);
+    padding: 5px;
+}
+
+.settings-item-labels {
+    font-size: 0.8rem;
+    font-weight: 300;
+
+}
+
+.settings-object {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 5px;
+    align-items: center;
+    background-color: var(--color-dark);
+    padding: 5px;
 }
 
  h1 {
      font-size: 3rem;
      font-weight: bold;
      opacity: 1;
-     color: var(--bg-color-dark);;
+     color: var(--color-dark);;
  }
 
 #start-btn {
@@ -119,15 +147,15 @@ body {
     font-size: 1.5rem;
     font-weight: bold;
     cursor: pointer;
-    background-color: var(--bg-color-dark);
-    color: var(--font-color-light);
+    background-color: var(--color-dark);
+    color: var(--color-light);
     opacity: 1;
 }
 
 #start-btn:hover {
     transform: translateY(-0.2rem);
     transition: transform 1000ms;
-
 }
+
 
 

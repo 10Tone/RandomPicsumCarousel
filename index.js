@@ -1,6 +1,5 @@
 import anime from "./node_modules/animejs/lib/anime.es.js";
 
-// const body = document.querySelector("body");
 const imageOne = document.querySelector(".image1");
 const imageTwo = document.querySelector(".image2");
 const startBtn = document.querySelector("#start-btn");
@@ -21,29 +20,6 @@ function timeOut(time) {
         setTimeout(resolve, time);
     });
 }
-function loadImage(element) {
-    // loadImageInfo()
-    element.style.backgroundImage = "url(https://picsum.photos/1920/1080/?random&cb=" + (+new Date()) + ")";
-    // console.log();
-    // loadImageInfo();
-}
-
-// async function loadImageInfo() {
-//     let listResponse = await fetch('https://picsum.photos/v2/list?limit=100');
-//     let listData = await listResponse.json();
-//     console.log(listData);
-//
-//     let imageID = Math.floor(Math.random()*listData.length);
-//     console.log(imageID);
-//     let url = `https://picsum.photos/id/${imageID}/info`;
-//     try {
-//         let response = await fetch(url);
-//         let info = await response.json();
-//         console.log(info);
-//     } catch(err) {
-//
-//     }
-// }
 
 function loadImageAndInfo(element) {
     fetch(`https://picsum.photos/1920/1080`)
